@@ -8,5 +8,21 @@ description: |
   Note for Regression models
 ---
 
-# About
-These notes are for class use only.
+# Introduction
+Regression models are the most widely used and abused statistical modelling framework in the world.  It popularity is based on its simplicity and the elegant mathematical theory behind it.  Although the theory is beautiful, it is based on some assumptions which we must always be wary of.  Just like the p-values, the Regression modelling framework is a tool and we need to understand its limitations when we use it.  Let's dive in.
+
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(ggplot2)
+library(dplyr)
+library(gtsummary)
+library(explore)
+library(car)
+
+wage_data <- read.csv('https://raw.githubusercontent.com/gitcnk/Data/master/Wage_data_MidAtlantic.csv')
+
+```
+
+
+

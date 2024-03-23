@@ -1,0 +1,4 @@
+# Correlation Coefficient 
+
+The word correlation is used widely in our daily conversations.  It means many things depending on the context.  In statistic,  we have a definite meaning and a limitation to this word.  It primarily depends on the datatype.  For example, it is a reasonable question to ask that whether there is a correlation between a person's skin color and their income.  But it is hard to quantify this because one variable, race, is a categorical variable and the other, income, is numerical. In statistics, when we talk about correlations, we generally mean the correlation between two numerical variables such as height and weight.
+

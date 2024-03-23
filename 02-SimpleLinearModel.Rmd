@@ -1,0 +1,24 @@
+# An Example
+
+```{r}
+wage_data %>%
+  tbl_summary()
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+wage_data %>%
+  sample_n(size = 100) %>%
+  ggplot() +
+  aes( x = age, y = wage) +
+  geom_point() +
+  geom_smooth(method = 'lm', 
+              se = FALSE) +
+  geom_smooth(method = 'lm', 
+              se = FALSE,
+              formula = y ~ poly(x, degree = 3),
+              col = 'red') 
+
+```
+
+

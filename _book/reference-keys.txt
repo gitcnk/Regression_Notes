@@ -1,3 +1,6 @@
-about
-regression-models
-a-brief-introduction
+introduction
+correlation-coefficient
+an-example
+multiple-regression
+working-with-categorical-data
+intercation-terms

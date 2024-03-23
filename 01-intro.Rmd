@@ -1,7 +1,0 @@
-# Regression Models 
-
-
-## A Brief Introduction
-
-Regression models are the most widely used and abused statistical modelling framework in the world.  It popularity is based on its simplicity and the elegant mathematical theory behind it.  Although the theory is beautiful, it is based on some assumptions which we must always be wary of.  Let's dive in.
-
