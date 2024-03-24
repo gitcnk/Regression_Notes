@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="an-example.html"/>
-
+<link rel="next" href="tricky-situations.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -148,6 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="multiple-regression.html"><a href="multiple-regression.html#working-with-categorical-data"><i class="fa fa-check"></i><b>4.1</b> Working with Categorical Data</a></li>
 <li class="chapter" data-level="4.2" data-path="multiple-regression.html"><a href="multiple-regression.html#intercation-terms"><i class="fa fa-check"></i><b>4.2</b> Intercation Terms</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="tricky-situations.html"><a href="tricky-situations.html"><i class="fa fa-check"></i><b>5</b> Tricky Situations</a></li>
 </ul>
 
       </nav>
@@ -181,29 +182,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="multiple-regression.html#cb5-1" aria-hidden="true" tabindex="-1"></a>wage_data <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="multiple-regression.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb5-3"><a href="multiple-regression.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> wage, <span class="at">col =</span> jobclass) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="multiple-regression.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="multiple-regression.html#cb6-1" aria-hidden="true" tabindex="-1"></a>wage_data <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="multiple-regression.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wage, jobclass) <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="multiple-regression.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">by =</span> jobclass) <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a href="multiple-regression.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_p</span>(<span class="at">test =</span> <span class="fu">list</span>(wage <span class="sc">~</span> <span class="st">&#39;t.test&#39;</span>))</span></code></pre></div>
-<div id="pwcqkiswel" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pwcqkiswel table {
+<span id="cb5-4"><a href="multiple-regression.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb5-5"><a href="multiple-regression.html#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_economist</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="multiple-regression.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note:</span></span>
+<span id="cb6-2"><a href="multiple-regression.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Plot style in the Economist magazine</span></span>
+<span id="cb6-3"><a href="multiple-regression.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. You can try theme_wsj for the style of Wall Street Journal and many more using the &#39;ggthemes&#39; package.</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="multiple-regression.html#cb7-1" aria-hidden="true" tabindex="-1"></a>wage_data <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="multiple-regression.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(wage, jobclass) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="multiple-regression.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">by =</span> jobclass,</span>
+<span id="cb7-4"><a href="multiple-regression.html#cb7-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">statistic =</span> <span class="fu">list</span>(wage <span class="sc">~</span> <span class="st">&#39;{mean}&#39;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="multiple-regression.html#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_p</span>(<span class="at">test =</span> <span class="fu">list</span>(wage <span class="sc">~</span> <span class="st">&#39;t.test&#39;</span>))</span></code></pre></div>
+<div id="zulhckducy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zulhckducy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pwcqkiswel thead, #pwcqkiswel tbody, #pwcqkiswel tfoot, #pwcqkiswel tr, #pwcqkiswel td, #pwcqkiswel th {
+#zulhckducy thead, #zulhckducy tbody, #zulhckducy tfoot, #zulhckducy tr, #zulhckducy td, #zulhckducy th {
   border-style: none;
 }
 
-#pwcqkiswel p {
+#zulhckducy p {
   margin: 0;
   padding: 0;
 }
 
-#pwcqkiswel .gt_table {
+#zulhckducy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -229,12 +235,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-left-color: #D3D3D3;
 }
 
-#pwcqkiswel .gt_caption {
+#zulhckducy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pwcqkiswel .gt_title {
+#zulhckducy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -246,7 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-width: 0;
 }
 
-#pwcqkiswel .gt_subtitle {
+#zulhckducy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -258,7 +264,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-width: 0;
 }
 
-#pwcqkiswel .gt_heading {
+#zulhckducy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -270,13 +276,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#pwcqkiswel .gt_bottom_border {
+#zulhckducy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pwcqkiswel .gt_col_headings {
+#zulhckducy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -291,7 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#pwcqkiswel .gt_col_heading {
+#zulhckducy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -311,7 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#pwcqkiswel .gt_column_spanner_outer {
+#zulhckducy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -323,15 +329,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 4px;
 }
 
-#pwcqkiswel .gt_column_spanner_outer:first-child {
+#zulhckducy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pwcqkiswel .gt_column_spanner_outer:last-child {
+#zulhckducy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pwcqkiswel .gt_column_spanner {
+#zulhckducy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -343,11 +349,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   width: 100%;
 }
 
-#pwcqkiswel .gt_spanner_row {
+#zulhckducy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pwcqkiswel .gt_group_heading {
+#zulhckducy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -373,7 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   text-align: left;
 }
 
-#pwcqkiswel .gt_empty_group_heading {
+#zulhckducy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -388,15 +394,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: middle;
 }
 
-#pwcqkiswel .gt_from_md > :first-child {
+#zulhckducy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pwcqkiswel .gt_from_md > :last-child {
+#zulhckducy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pwcqkiswel .gt_row {
+#zulhckducy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -415,7 +421,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   overflow-x: hidden;
 }
 
-#pwcqkiswel .gt_stub {
+#zulhckducy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -428,7 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#pwcqkiswel .gt_stub_row_group {
+#zulhckducy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -442,15 +448,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   vertical-align: top;
 }
 
-#pwcqkiswel .gt_row_group_first td {
+#zulhckducy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pwcqkiswel .gt_row_group_first th {
+#zulhckducy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pwcqkiswel .gt_summary_row {
+#zulhckducy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -460,16 +466,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#pwcqkiswel .gt_first_summary_row {
+#zulhckducy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pwcqkiswel .gt_first_summary_row.thick {
+#zulhckducy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pwcqkiswel .gt_last_summary_row {
+#zulhckducy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -479,7 +485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#pwcqkiswel .gt_grand_summary_row {
+#zulhckducy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -489,7 +495,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#pwcqkiswel .gt_first_grand_summary_row {
+#zulhckducy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -499,7 +505,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-top-color: #D3D3D3;
 }
 
-#pwcqkiswel .gt_last_grand_summary_row_top {
+#zulhckducy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -509,11 +515,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#pwcqkiswel .gt_striped {
+#zulhckducy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pwcqkiswel .gt_table_body {
+#zulhckducy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -522,7 +528,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-bottom-color: #D3D3D3;
 }
 
-#pwcqkiswel .gt_footnotes {
+#zulhckducy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -536,7 +542,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#pwcqkiswel .gt_footnote {
+#zulhckducy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -545,7 +551,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#pwcqkiswel .gt_sourcenotes {
+#zulhckducy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -559,7 +565,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   border-right-color: #D3D3D3;
 }
 
-#pwcqkiswel .gt_sourcenote {
+#zulhckducy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -567,63 +573,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   padding-right: 5px;
 }
 
-#pwcqkiswel .gt_left {
+#zulhckducy .gt_left {
   text-align: left;
 }
 
-#pwcqkiswel .gt_center {
+#zulhckducy .gt_center {
   text-align: center;
 }
 
-#pwcqkiswel .gt_right {
+#zulhckducy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pwcqkiswel .gt_font_normal {
+#zulhckducy .gt_font_normal {
   font-weight: normal;
 }
 
-#pwcqkiswel .gt_font_bold {
+#zulhckducy .gt_font_bold {
   font-weight: bold;
 }
 
-#pwcqkiswel .gt_font_italic {
+#zulhckducy .gt_font_italic {
   font-style: italic;
 }
 
-#pwcqkiswel .gt_super {
+#zulhckducy .gt_super {
   font-size: 65%;
 }
 
-#pwcqkiswel .gt_footnote_marks {
+#zulhckducy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pwcqkiswel .gt_asterisk {
+#zulhckducy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pwcqkiswel .gt_indent_1 {
+#zulhckducy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pwcqkiswel .gt_indent_2 {
+#zulhckducy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pwcqkiswel .gt_indent_3 {
+#zulhckducy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pwcqkiswel .gt_indent_4 {
+#zulhckducy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pwcqkiswel .gt_indent_5 {
+#zulhckducy .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -638,14 +644,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="label" class="gt_row gt_left">wage</td>
-<td headers="stat_1" class="gt_row gt_center">100 (81, 119)</td>
-<td headers="stat_2" class="gt_row gt_center">113 (92, 138)</td>
+<td headers="stat_1" class="gt_row gt_center">103</td>
+<td headers="stat_2" class="gt_row gt_center">121</td>
 <td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
   </tbody>
   
   <tfoot class="gt_footnotes">
     <tr>
-      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Median (IQR)</td>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Mean</td>
     </tr>
     <tr>
       <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> Welch Two Sample t-test</td>
@@ -653,6 +659,707 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </tfoot>
 </table>
 </div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="multiple-regression.html#cb8-1" aria-hidden="true" tabindex="-1"></a>wage_data <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="multiple-regression.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(wage <span class="sc">~</span> jobclass, <span class="at">data =</span> .) </span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  wage by jobclass
+## t = -11.489, df = 2714.9, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means between group 1. Industrial and group 2. Information is not equal to 0
+## 95 percent confidence interval:
+##  -20.21940 -14.32378
+## sample estimates:
+##  mean in group 1. Industrial mean in group 2. Information 
+##                     103.3211                     120.5927</code></pre>
+<p>It seems like there is a difference between the two sectors as expected. Does it hold once we adjust for age? For example, could it be that most of the younger workers are in the IT sector and the older workers are in the industrial sector?</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="multiple-regression.html#cb10-1" aria-hidden="true" tabindex="-1"></a>wage_data <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="multiple-regression.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb10-3"><a href="multiple-regression.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">col =</span> jobclass) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="multiple-regression.html#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
+<span id="cb10-5"><a href="multiple-regression.html#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_economist</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="multiple-regression.html#cb11-1" aria-hidden="true" tabindex="-1"></a>wage_data <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="multiple-regression.html#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb11-3"><a href="multiple-regression.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> jobclass) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="multiple-regression.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="multiple-regression.html#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_economist</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-2.png" width="672" /></p>
+<p>Contrary to what we thought, the shift is in the opposite direction where the mean (and median) age of industrial sector workers is less compared to the IT sector. Now the question is whether the salary difference in the two sectors can be attributed to age or job sector or both.</p>
+<p>We can use the regression framework to explore this.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="multiple-regression.html#cb12-1" aria-hidden="true" tabindex="-1"></a>wage_data <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="multiple-regression.html#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="at">size =</span> <span class="dv">500</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="multiple-regression.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-4"><a href="multiple-regression.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>( <span class="at">x =</span> age, <span class="at">y =</span> wage, <span class="at">col =</span> jobclass) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="multiple-regression.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-6"><a href="multiple-regression.html#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, </span>
+<span id="cb12-7"><a href="multiple-regression.html#cb12-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>The following model will help us determine whether there is a difference in salary due to job secotor after we adjust for the age of the person.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="multiple-regression.html#cb14-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage <span class="sc">~</span> age <span class="sc">+</span> jobclass, <span class="at">data =</span> wage_data)</span>
+<span id="cb14-2"><a href="multiple-regression.html#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="multiple-regression.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl_regression</span>(model1)</span></code></pre></div>
+<div id="noilheaskk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#noilheaskk table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#noilheaskk thead, #noilheaskk tbody, #noilheaskk tfoot, #noilheaskk tr, #noilheaskk td, #noilheaskk th {
+  border-style: none;
+}
+
+#noilheaskk p {
+  margin: 0;
+  padding: 0;
+}
+
+#noilheaskk .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#noilheaskk .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#noilheaskk .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#noilheaskk .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#noilheaskk .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#noilheaskk .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#noilheaskk .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#noilheaskk .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#noilheaskk .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#noilheaskk .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#noilheaskk .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#noilheaskk .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#noilheaskk .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#noilheaskk .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#noilheaskk .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#noilheaskk .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#noilheaskk .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#noilheaskk .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#noilheaskk .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#noilheaskk .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#noilheaskk .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#noilheaskk .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#noilheaskk .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#noilheaskk .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#noilheaskk .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#noilheaskk .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#noilheaskk .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#noilheaskk .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#noilheaskk .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#noilheaskk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#noilheaskk .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#noilheaskk .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#noilheaskk .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#noilheaskk .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#noilheaskk .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#noilheaskk .gt_left {
+  text-align: left;
+}
+
+#noilheaskk .gt_center {
+  text-align: center;
+}
+
+#noilheaskk .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#noilheaskk .gt_font_normal {
+  font-weight: normal;
+}
+
+#noilheaskk .gt_font_bold {
+  font-weight: bold;
+}
+
+#noilheaskk .gt_font_italic {
+  font-style: italic;
+}
+
+#noilheaskk .gt_super {
+  font-size: 65%;
+}
+
+#noilheaskk .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#noilheaskk .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#noilheaskk .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#noilheaskk .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#noilheaskk .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#noilheaskk .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#noilheaskk .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Beta&lt;/strong&gt;"><strong>Beta</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;95% CI&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;p-value&lt;/strong&gt;"><strong>p-value</strong></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">age</td>
+<td headers="estimate" class="gt_row gt_center">0.64</td>
+<td headers="ci" class="gt_row gt_center">0.52, 0.77</td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">jobclass</td>
+<td headers="estimate" class="gt_row gt_center"><br /></td>
+<td headers="ci" class="gt_row gt_center"><br /></td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    1. Industrial</td>
+<td headers="estimate" class="gt_row gt_center">—</td>
+<td headers="ci" class="gt_row gt_center">—</td>
+<td headers="p.value" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    2. Information</td>
+<td headers="estimate" class="gt_row gt_center">16</td>
+<td headers="ci" class="gt_row gt_center">13, 19</td>
+<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> CI = Confidence Interval</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="multiple-regression.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(model1, <span class="at">type =</span> <span class="st">&#39;html&#39;</span>)</span></code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+wage
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+age
+</td>
+<td>
+0.645<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.064)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+jobclass2. Information
+</td>
+<td>
+15.921<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(1.473)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+76.630<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(2.832)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+3,000
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.074
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.074
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+40.161 (df = 2997)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+120.363<sup>***</sup> (df = 2; 2997)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="multiple-regression.html#cb16-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="sc">%&gt;%</span> <span class="fu">tidy</span>() <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">76.63</td>
+<td align="right">2.83</td>
+<td align="right">27.06</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">age</td>
+<td align="right">0.64</td>
+<td align="right">0.06</td>
+<td align="right">10.11</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">jobclass2. Information</td>
+<td align="right">15.92</td>
+<td align="right">1.47</td>
+<td align="right">10.81</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="intercation-terms" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Intercation Terms<a href="multiple-regression.html#intercation-terms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -664,8 +1371,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="an-example.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="an-example.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tricky-situations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

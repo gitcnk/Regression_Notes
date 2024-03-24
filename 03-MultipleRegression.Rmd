@@ -16,15 +16,79 @@ wage_data %>%
 wage_data %>%
   ggplot() +
   aes(x = wage, col = jobclass) +
-  geom_density()
+  geom_density() +
+  theme_economist() 
+
+# Note:
+# 1. Plot style in the Economist magazine
+# 2. You can try theme_wsj for the style of Wall Street Journal and many more using the 'ggthemes' package.
 ```
 
 ```{r}
 wage_data %>%
   select(wage, jobclass) %>%
-  tbl_summary(by = jobclass) %>%
+  tbl_summary(by = jobclass,
+              statistic = list(wage ~ '{mean}')) %>%
   add_p(test = list(wage ~ 't.test'))
 ```
 
-## Intercation Terms
+
+```{r}
+wage_data %>% 
+  t.test(wage ~ jobclass, data = .) 
+  
+```
+
+ 
+It seems like there is a difference between the two sectors as expected.  Does it hold once we adjust for age?  For example, could it be that most of the younger workers are in the IT sector and the older workers are in the industrial sector?
+
+```{r}
+wage_data %>%
+  ggplot() +
+  aes(x = age, col = jobclass) +
+  geom_density() +
+  theme_economist()
+
+wage_data %>%
+  ggplot() +
+  aes(x = age, y = jobclass) +
+  geom_boxplot() +
+  theme_economist()
+```
+
+Contrary to what we thought, the shift is in the opposite direction where the mean (and median) age of industrial sector workers is less compared to the IT sector.  Now the question is whether the salary difference in the two sectors can be attributed to age or job sector or both.
+
+We can use the regression framework to explore this.
+
+```{r}
+wage_data %>%
+  sample_n(size = 500) %>%
+  ggplot() +
+  aes( x = age, y = wage, col = jobclass) +
+  geom_point() +
+  geom_smooth(method = 'lm', 
+              se = FALSE)
+  
+```
+
+The following model will help us determine whether there is a difference in salary due to job secotor after we adjust for the age of the person.
+
+
+```{r, message=FALSE, results='asis'}
+model1 <- lm(wage ~ age + jobclass, data = wage_data)
+
+tbl_regression(model1) %>%
+  add_glance_table() %>%
+  modify_column_hide(column = ci) %>%
+  modify_column_unhide(column = std.error) %>%
+  modify_column_unhide(column = statistic)
+
+
+
+
+```
+
+
+
+## Interaction Terms
 

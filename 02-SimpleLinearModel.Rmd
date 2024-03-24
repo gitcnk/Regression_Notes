@@ -8,7 +8,7 @@ wage_data %>%
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 
 wage_data %>%
-  sample_n(size = 100) %>%
+  sample_n(size = 500) %>%
   ggplot() +
   aes( x = age, y = wage) +
   geom_point() +
@@ -17,8 +17,13 @@ wage_data %>%
   geom_smooth(method = 'lm', 
               se = FALSE,
               formula = y ~ poly(x, degree = 3),
-              col = 'red') 
+              col = 'red') +
+  theme_economist() +
+  labs(title = 'Do older workers earn more?',
+       subtitle = 'Data Source: US Census Bureau',
+       x = 'Age',
+       y = 'Weekly Wage (in 2009)')
 
 ```
-
+ 
 

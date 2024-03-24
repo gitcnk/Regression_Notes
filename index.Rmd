@@ -14,11 +14,12 @@ Regression models are the most widely used and abused statistical modelling fram
 
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
-library(ggplot2)
-library(dplyr)
+
+library(ggthemes)
+library(tidyverse)
 library(gtsummary)
-library(explore)
 library(car)
+
 
 wage_data <- read.csv('https://raw.githubusercontent.com/gitcnk/Data/master/Wage_data_MidAtlantic.csv')
 

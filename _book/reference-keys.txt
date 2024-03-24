@@ -4,3 +4,4 @@ an-example
 multiple-regression
 working-with-categorical-data
 intercation-terms
+tricky-situations

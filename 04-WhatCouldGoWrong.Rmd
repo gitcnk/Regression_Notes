@@ -1,0 +1,9 @@
+# Tricky Situations
+
+Interpreting regression coefficients is quite tricky.  If you are not careful, you might end up with saying stilly things or foolish things.  Let's look at couple of examples:
+
+```{r}
+
+
+```
+
