@@ -1,6 +1,7 @@
 introduction
 correlation-coefficient
 an-example
+another-example
 multiple-regression
 working-with-categorical-data
 interaction-terms

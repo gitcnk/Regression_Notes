@@ -1,5 +1,7 @@
 # Multiple Regression
 
+
+
 ## Working with Categorical Data
 
 Now let's add a categorical variable into the model.  For example, we can ask whether the job sector (industrial  vs. information technology) has an impact on wages.  In particular, we may hypothesize that persons working in the IT sector may, on average , make more money.  Let's see whether this is true or not.
