@@ -23,7 +23,7 @@
 <meta name="author" content="CK" />
 
 
-<meta name="date" content="2024-03-23" />
+<meta name="date" content="2024-03-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -146,7 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="multiple-regression.html"><a href="multiple-regression.html"><i class="fa fa-check"></i><b>4</b> Multiple Regression</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="multiple-regression.html"><a href="multiple-regression.html#working-with-categorical-data"><i class="fa fa-check"></i><b>4.1</b> Working with Categorical Data</a></li>
-<li class="chapter" data-level="4.2" data-path="multiple-regression.html"><a href="multiple-regression.html#intercation-terms"><i class="fa fa-check"></i><b>4.2</b> Intercation Terms</a></li>
+<li class="chapter" data-level="4.2" data-path="multiple-regression.html"><a href="multiple-regression.html#interaction-terms"><i class="fa fa-check"></i><b>4.2</b> Interaction Terms</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tricky-situations.html"><a href="tricky-situations.html"><i class="fa fa-check"></i><b>5</b> Tricky Situations</a></li>
 </ul>
@@ -169,542 +171,220 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="an-example" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">3</span> An Example<a href="an-example.html#an-example" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="an-example.html#cb1-1" aria-hidden="true" tabindex="-1"></a>wage_data <span class="sc">%&gt;%</span></span>
-<span id="cb1-2"><a href="an-example.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>()</span></code></pre></div>
-<div id="wmyyeyalyt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wmyyeyalyt table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#wmyyeyalyt thead, #wmyyeyalyt tbody, #wmyyeyalyt tfoot, #wmyyeyalyt tr, #wmyyeyalyt td, #wmyyeyalyt th {
-  border-style: none;
-}
-
-#wmyyeyalyt p {
-  margin: 0;
-  padding: 0;
-}
-
-#wmyyeyalyt .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#wmyyeyalyt .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#wmyyeyalyt .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#wmyyeyalyt .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#wmyyeyalyt .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#wmyyeyalyt .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#wmyyeyalyt .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#wmyyeyalyt .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#wmyyeyalyt .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#wmyyeyalyt .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#wmyyeyalyt .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#wmyyeyalyt .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#wmyyeyalyt .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#wmyyeyalyt .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#wmyyeyalyt .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#wmyyeyalyt .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#wmyyeyalyt .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#wmyyeyalyt .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#wmyyeyalyt .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#wmyyeyalyt .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#wmyyeyalyt .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#wmyyeyalyt .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#wmyyeyalyt .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#wmyyeyalyt .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#wmyyeyalyt .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#wmyyeyalyt .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#wmyyeyalyt .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#wmyyeyalyt .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#wmyyeyalyt .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#wmyyeyalyt .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#wmyyeyalyt .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#wmyyeyalyt .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#wmyyeyalyt .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#wmyyeyalyt .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#wmyyeyalyt .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#wmyyeyalyt .gt_left {
-  text-align: left;
-}
-
-#wmyyeyalyt .gt_center {
-  text-align: center;
-}
-
-#wmyyeyalyt .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#wmyyeyalyt .gt_font_normal {
-  font-weight: normal;
-}
-
-#wmyyeyalyt .gt_font_bold {
-  font-weight: bold;
-}
-
-#wmyyeyalyt .gt_font_italic {
-  font-style: italic;
-}
-
-#wmyyeyalyt .gt_super {
-  font-size: 65%;
-}
-
-#wmyyeyalyt .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#wmyyeyalyt .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#wmyyeyalyt .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#wmyyeyalyt .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#wmyyeyalyt .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#wmyyeyalyt .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#wmyyeyalyt .gt_indent_5 {
-  text-indent: 25px;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;Characteristic&lt;/strong&gt;"><strong>Characteristic</strong></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;strong&gt;N = 3,000&lt;/strong&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><strong>N = 3,000</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">year</td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    2003</td>
-<td headers="stat_0" class="gt_row gt_center">513 (17%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    2004</td>
-<td headers="stat_0" class="gt_row gt_center">485 (16%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    2005</td>
-<td headers="stat_0" class="gt_row gt_center">447 (15%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    2006</td>
-<td headers="stat_0" class="gt_row gt_center">392 (13%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    2007</td>
-<td headers="stat_0" class="gt_row gt_center">386 (13%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    2008</td>
-<td headers="stat_0" class="gt_row gt_center">388 (13%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    2009</td>
-<td headers="stat_0" class="gt_row gt_center">389 (13%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">age</td>
-<td headers="stat_0" class="gt_row gt_center">42 (34, 51)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">maritl</td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    1. Never Married</td>
-<td headers="stat_0" class="gt_row gt_center">648 (22%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    2. Married</td>
-<td headers="stat_0" class="gt_row gt_center">2,074 (69%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    3. Widowed</td>
-<td headers="stat_0" class="gt_row gt_center">19 (0.6%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    4. Divorced</td>
-<td headers="stat_0" class="gt_row gt_center">204 (6.8%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    5. Separated</td>
-<td headers="stat_0" class="gt_row gt_center">55 (1.8%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">race</td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    1. White</td>
-<td headers="stat_0" class="gt_row gt_center">2,480 (83%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    2. Black</td>
-<td headers="stat_0" class="gt_row gt_center">293 (9.8%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    3. Asian</td>
-<td headers="stat_0" class="gt_row gt_center">190 (6.3%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    4. Other</td>
-<td headers="stat_0" class="gt_row gt_center">37 (1.2%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">education</td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    1. &lt; HS Grad</td>
-<td headers="stat_0" class="gt_row gt_center">268 (8.9%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    2. HS Grad</td>
-<td headers="stat_0" class="gt_row gt_center">971 (32%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    3. Some College</td>
-<td headers="stat_0" class="gt_row gt_center">650 (22%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    4. College Grad</td>
-<td headers="stat_0" class="gt_row gt_center">685 (23%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    5. Advanced Degree</td>
-<td headers="stat_0" class="gt_row gt_center">426 (14%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">region</td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    2. Middle Atlantic</td>
-<td headers="stat_0" class="gt_row gt_center">3,000 (100%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">jobclass</td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    1. Industrial</td>
-<td headers="stat_0" class="gt_row gt_center">1,544 (51%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    2. Information</td>
-<td headers="stat_0" class="gt_row gt_center">1,456 (49%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">health</td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    1. &lt;=Good</td>
-<td headers="stat_0" class="gt_row gt_center">858 (29%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    2. &gt;=Very Good</td>
-<td headers="stat_0" class="gt_row gt_center">2,142 (71%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">health_ins</td>
-<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    1. Yes</td>
-<td headers="stat_0" class="gt_row gt_center">2,083 (69%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">    2. No</td>
-<td headers="stat_0" class="gt_row gt_center">917 (31%)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">logwage</td>
-<td headers="stat_0" class="gt_row gt_center">4.65 (4.45, 4.86)</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">wage</td>
-<td headers="stat_0" class="gt_row gt_center">105 (85, 129)</td></tr>
-  </tbody>
-  
-  <tfoot class="gt_footnotes">
-    <tr>
-      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%); Median (IQR)</td>
-    </tr>
-  </tfoot>
+<span id="cb1-2"><a href="an-example.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">datasummary_skim</span>()</span></code></pre></div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Unique
+</th>
+<th style="text-align:right;">
+Missing Pct.
+</th>
+<th style="text-align:right;">
+Mean
+</th>
+<th style="text-align:right;">
+SD
+</th>
+<th style="text-align:right;">
+Min
+</th>
+<th style="text-align:right;">
+Median
+</th>
+<th style="text-align:right;">
+Max
+</th>
+<th style="text-align:right;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+year
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2005.8
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:right;">
+2003.0
+</td>
+<td style="text-align:right;">
+2006.0
+</td>
+<td style="text-align:right;">
+2009.0
+</td>
+<td style="text-align:right;">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svglite" width="48.00pt" height="12.00pt" viewBox="0 0 48.00 12.00">
+<defs>
+<style type="text/css">
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  </style>
+</defs><rect width="100%" height="100%" style="stroke: none; fill: none;"></rect><defs><clipPath id="cpMC4wMHw0OC4wMHwwLjAwfDEyLjAw"><rect x="0.00" y="0.00" width="48.00" height="12.00"></rect></clipPath></defs><g clip-path="url(#cpMC4wMHw0OC4wMHwwLjAwfDEyLjAw)">
+</g><defs><clipPath id="cpMC4wMHw0OC4wMHwyLjg4fDEyLjAw"><rect x="0.00" y="2.88" width="48.00" height="9.12"></rect></clipPath></defs><g clip-path="url(#cpMC4wMHw0OC4wMHwyLjg4fDEyLjAw)"><rect x="1.78" y="3.22" width="3.70" height="8.44" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="5.48" y="3.68" width="3.70" height="7.98" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="9.19" y="11.66" width="3.70" height="0.00" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="12.89" y="4.30" width="3.70" height="7.36" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="16.59" y="11.66" width="3.70" height="0.00" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="20.30" y="5.21" width="3.70" height="6.45" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="24.00" y="11.66" width="3.70" height="0.00" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="27.70" y="5.31" width="3.70" height="6.35" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="31.41" y="11.66" width="3.70" height="0.00" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="35.11" y="5.28" width="3.70" height="6.39" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="38.81" y="11.66" width="3.70" height="0.00" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="42.52" y="5.26" width="3.70" height="6.40" style="stroke-width: 0.38; fill: #000000;"></rect></g>
+</svg>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+age
+</td>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+42.4
+</td>
+<td style="text-align:right;">
+11.5
+</td>
+<td style="text-align:right;">
+18.0
+</td>
+<td style="text-align:right;">
+42.0
+</td>
+<td style="text-align:right;">
+80.0
+</td>
+<td style="text-align:right;">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svglite" width="48.00pt" height="12.00pt" viewBox="0 0 48.00 12.00">
+<defs>
+<style type="text/css">
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  </style>
+</defs><rect width="100%" height="100%" style="stroke: none; fill: none;"></rect><defs><clipPath id="cpMC4wMHw0OC4wMHwwLjAwfDEyLjAw"><rect x="0.00" y="0.00" width="48.00" height="12.00"></rect></clipPath></defs><g clip-path="url(#cpMC4wMHw0OC4wMHwwLjAwfDEyLjAw)">
+</g><defs><clipPath id="cpMC4wMHw0OC4wMHwyLjg4fDEyLjAw"><rect x="0.00" y="2.88" width="48.00" height="9.12"></rect></clipPath></defs><g clip-path="url(#cpMC4wMHw0OC4wMHwyLjg4fDEyLjAw)"><rect x="-0.37" y="10.85" width="3.58" height="0.82" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="3.21" y="8.29" width="3.58" height="3.37" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="6.80" y="6.39" width="3.58" height="5.27" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="10.38" y="4.79" width="3.58" height="6.87" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="13.96" y="3.91" width="3.58" height="7.76" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="17.55" y="3.22" width="3.58" height="8.44" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="21.13" y="3.53" width="3.58" height="8.14" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="24.72" y="5.39" width="3.58" height="6.27" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="28.30" y="7.37" width="3.58" height="4.29" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="31.89" y="9.69" width="3.58" height="1.98" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="35.47" y="11.03" width="3.58" height="0.63" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="39.05" y="11.28" width="3.58" height="0.38" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="42.64" y="11.52" width="3.58" height="0.14" style="stroke-width: 0.38; fill: #000000;"></rect></g>
+</svg>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+logwage
+</td>
+<td style="text-align:right;">
+508
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4.7
+</td>
+<td style="text-align:right;">
+0.4
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+4.7
+</td>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svglite" width="48.00pt" height="12.00pt" viewBox="0 0 48.00 12.00">
+<defs>
+<style type="text/css">
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  </style>
+</defs><rect width="100%" height="100%" style="stroke: none; fill: none;"></rect><defs><clipPath id="cpMC4wMHw0OC4wMHwwLjAwfDEyLjAw"><rect x="0.00" y="0.00" width="48.00" height="12.00"></rect></clipPath></defs><g clip-path="url(#cpMC4wMHw0OC4wMHwwLjAwfDEyLjAw)">
+</g><defs><clipPath id="cpMC4wMHw0OC4wMHwyLjg4fDEyLjAw"><rect x="0.00" y="2.88" width="48.00" height="9.12"></rect></clipPath></defs><g clip-path="url(#cpMC4wMHw0OC4wMHwyLjg4fDEyLjAw)"><rect x="1.78" y="11.60" width="3.22" height="0.060" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="4.99" y="11.60" width="3.22" height="0.060" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="8.21" y="11.54" width="3.22" height="0.12" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="11.43" y="11.45" width="3.22" height="0.21" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="14.65" y="11.07" width="3.22" height="0.59" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="17.86" y="10.30" width="3.22" height="1.36" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="21.08" y="7.44" width="3.22" height="4.23" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="24.30" y="6.04" width="3.22" height="5.63" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="27.51" y="3.22" width="3.22" height="8.44" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="30.73" y="5.88" width="3.22" height="5.79" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="33.95" y="9.55" width="3.22" height="2.11" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="37.16" y="11.07" width="3.22" height="0.59" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="40.38" y="11.43" width="3.22" height="0.23" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="43.60" y="11.09" width="3.22" height="0.57" style="stroke-width: 0.38; fill: #000000;"></rect></g>
+</svg>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wage
+</td>
+<td style="text-align:right;">
+508
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+111.7
+</td>
+<td style="text-align:right;">
+41.7
+</td>
+<td style="text-align:right;">
+20.1
+</td>
+<td style="text-align:right;">
+104.9
+</td>
+<td style="text-align:right;">
+318.3
+</td>
+<td style="text-align:right;">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="svglite" width="48.00pt" height="12.00pt" viewBox="0 0 48.00 12.00">
+<defs>
+<style type="text/css">
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  </style>
+</defs><rect width="100%" height="100%" style="stroke: none; fill: none;"></rect><defs><clipPath id="cpMC4wMHw0OC4wMHwwLjAwfDEyLjAw"><rect x="0.00" y="0.00" width="48.00" height="12.00"></rect></clipPath></defs><g clip-path="url(#cpMC4wMHw0OC4wMHwwLjAwfDEyLjAw)">
+</g><defs><clipPath id="cpMC4wMHw0OC4wMHwyLjg4fDEyLjAw"><rect x="0.00" y="2.88" width="48.00" height="9.12"></rect></clipPath></defs><g clip-path="url(#cpMC4wMHw0OC4wMHwyLjg4fDEyLjAw)"><rect x="1.77" y="11.35" width="2.98" height="0.31" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="4.75" y="10.44" width="2.98" height="1.22" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="7.73" y="7.10" width="2.98" height="4.56" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="10.71" y="3.22" width="2.98" height="8.44" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="13.69" y="4.04" width="2.98" height="7.62" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="16.67" y="7.13" width="2.98" height="4.54" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="19.65" y="8.93" width="2.98" height="2.73" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="22.63" y="10.15" width="2.98" height="1.52" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="25.61" y="11.20" width="2.98" height="0.47" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="28.59" y="11.46" width="2.98" height="0.21" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="31.57" y="11.65" width="2.98" height="0.011" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="34.55" y="11.64" width="2.98" height="0.022" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="37.53" y="11.00" width="2.98" height="0.66" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="40.51" y="11.55" width="2.98" height="0.11" style="stroke-width: 0.38; fill: #000000;"></rect><rect x="43.49" y="11.60" width="2.98" height="0.065" style="stroke-width: 0.38; fill: #000000;"></rect></g>
+</svg>
+</td>
+</tr>
+</tbody>
 </table>
-</div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="an-example.html#cb2-1" aria-hidden="true" tabindex="-1"></a>wage_data <span class="sc">%&gt;%</span></span>
 <span id="cb2-2"><a href="an-example.html#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="at">size =</span> <span class="dv">500</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-3"><a href="an-example.html#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
@@ -721,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-14"><a href="an-example.html#cb2-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&#39;Data Source: US Census Bureau&#39;</span>,</span>
 <span id="cb2-15"><a href="an-example.html#cb2-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&#39;Age&#39;</span>,</span>
 <span id="cb2-16"><a href="an-example.html#cb2-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&#39;Weekly Wage (in 2009)&#39;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 
 </div>
             </section>

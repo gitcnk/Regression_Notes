@@ -2,7 +2,7 @@
 
 ```{r}
 wage_data %>%
-  tbl_summary()
+  datasummary_skim()
 ```
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}

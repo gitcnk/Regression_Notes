@@ -3,5 +3,5 @@ correlation-coefficient
 an-example
 multiple-regression
 working-with-categorical-data
-intercation-terms
+interaction-terms
 tricky-situations

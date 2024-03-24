@@ -19,6 +19,8 @@ library(ggthemes)
 library(tidyverse)
 library(gtsummary)
 library(car)
+library(kableExtra)
+library(modelsummary)
 
 
 wage_data <- read.csv('https://raw.githubusercontent.com/gitcnk/Data/master/Wage_data_MidAtlantic.csv')
