@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 An Example | To Regress or not to Regress!</title>
+  <title>2 An Example | To Regress or not to Regress!</title>
   <meta name="description" content="Note for Regression models" />
   <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 An Example | To Regress or not to Regress!" />
+  <meta property="og:title" content="2 An Example | To Regress or not to Regress!" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Note for Regression models" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 An Example | To Regress or not to Regress!" />
+  <meta name="twitter:title" content="2 An Example | To Regress or not to Regress!" />
   
   <meta name="twitter:description" content="Note for Regression models" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="correlation-coefficient.html"/>
-<link rel="next" href="multiple-regression.html"/>
+<link rel="prev" href="index.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -141,17 +141,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html"><i class="fa fa-check"></i><b>2</b> Correlation Coefficient</a></li>
-<li class="chapter" data-level="3" data-path="an-example.html"><a href="an-example.html"><i class="fa fa-check"></i><b>3</b> An Example</a>
+<li class="chapter" data-level="2" data-path="an-example.html"><a href="an-example.html"><i class="fa fa-check"></i><b>2</b> An Example</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="an-example.html"><a href="an-example.html#another-example"><i class="fa fa-check"></i><b>3.1</b> Another Example</a></li>
+<li class="chapter" data-level="2.1" data-path="an-example.html"><a href="an-example.html#another-example"><i class="fa fa-check"></i><b>2.1</b> Another Example</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="multiple-regression.html"><a href="multiple-regression.html"><i class="fa fa-check"></i><b>4</b> Multiple Regression</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="multiple-regression.html"><a href="multiple-regression.html#working-with-categorical-data"><i class="fa fa-check"></i><b>4.1</b> Working with Categorical Data</a></li>
-<li class="chapter" data-level="4.2" data-path="multiple-regression.html"><a href="multiple-regression.html#interaction-terms"><i class="fa fa-check"></i><b>4.2</b> Interaction Terms</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="tricky-situations.html"><a href="tricky-situations.html"><i class="fa fa-check"></i><b>5</b> Tricky Situations</a></li>
 </ul>
 
       </nav>
@@ -169,8 +162,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="an-example" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">3</span> An Example<a href="an-example.html#an-example" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="an-example" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> An Example<a href="an-example.html#an-example" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Here is a sample of data from home prices in Washington state:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="an-example.html#cb1-1" aria-hidden="true" tabindex="-1"></a>WA_houses <span class="sc">%&gt;%</span></span>
 <span id="cb1-2"><a href="an-example.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
@@ -237,7 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Here are the estimated coefficients of the model:</p>
 <div id="uqvipjqxkn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#uqvipjqxkn table {
@@ -1206,7 +1199,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <p>It looks quite strange that bedroom coefficient is negative! What’s going on? We need to dig deeper. The square footage variable has lot of variance, it ranges from tiny to mid to large. Here is the distribution of square footage variable:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Some summary stats of the size of the houses. It seems like 50% of houses are around 1400 to 2500 square feet.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="an-example.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(WA_houses<span class="sc">$</span>sqft_living,</span>
 <span id="cb2-2"><a href="an-example.html#cb2-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">05</span>,.<span class="dv">25</span>,.<span class="dv">5</span>,.<span class="dv">75</span>,.<span class="dv">95</span>)) <span class="sc">%&gt;%</span></span>
@@ -1317,13 +1310,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Let’s explore the relationship of bedrooms with price:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-11-2.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-11-3.png" width="672" /></p>
-<p>Let’s remove the obvious outlier and redo the analysis:</p>
-<div id="another-example" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Another Example<a href="an-example.html#another-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="an-example.html#cb4-1" aria-hidden="true" tabindex="-1"></a>wage_data <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="an-example.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="an-example.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>
+<p>**How Bedrooms correlate with Price**</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Let’s remove the obvious outlier and redo the analysis. If you look at the data you’ll see that this outlier corresponds to row number 8063:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="an-example.html#cb4-1" aria-hidden="true" tabindex="-1"></a>WA_houses[<span class="dv">8063</span>,] <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">price</th>
+<th align="right">bedrooms</th>
+<th align="right">bathrooms</th>
+<th align="right">sqft_living</th>
+<th align="right">sqft_lot</th>
+<th align="right">waterfront</th>
+<th align="left">size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">8063</td>
+<td align="right">640000</td>
+<td align="right">33</td>
+<td align="right">1.75</td>
+<td align="right">1620</td>
+<td align="right">6000</td>
+<td align="right">0</td>
+<td align="left">mid-sized</td>
+</tr>
+</tbody>
+</table>
+<p>Also, if you examine more, you’ll see that there are 5 houses with no bedrooms! Let’s remove these and redo the plots:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Med</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Large</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div id="another-example" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Another Example<a href="an-example.html#another-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="an-example.html#cb5-1" aria-hidden="true" tabindex="-1"></a>wage_data <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="an-example.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="an-example.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>
 <table style="width:100%;">
 <colgroup>
 <col width="3%" />
@@ -1434,7 +1461,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -1443,8 +1470,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="correlation-coefficient.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="multiple-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

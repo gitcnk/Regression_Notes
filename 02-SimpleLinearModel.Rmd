@@ -11,12 +11,12 @@ WA_houses <- WA_houses %>%
 ```
 
 Here is a sample of data from home prices in Washington state:
+
 ```{r}
 WA_houses %>%
   head() %>%
   kable()
 ```
-
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 WA_houses %>%
@@ -31,9 +31,7 @@ WA_houses %>%
        subtitle = 'Home prices in Kings County in Washington State.')
 ```
 
-
 Here are the estimated coefficients of the model:
-
 
 ```{r echo=FALSE}
 m1 <- lm(price ~ sqft_living, data = WA_houses)
@@ -46,10 +44,7 @@ m1 %>%
   modify_column_unhide(column = statistic)
 ```
 
-
 Let's look at the correlation of bedrooms with the price after we adjust for the square footage of the house:
-
-
 
 ```{r echo=FALSE}
 m2 <- lm(price ~ sqft_living + bedrooms, data = WA_houses)
@@ -62,7 +57,7 @@ m2 %>%
   modify_column_unhide(column = statistic)
 ```
 
-It looks quite strange that bedroom coefficient is negative! What's going on?  We need to dig deeper.  The square footage variable has lot of variance, it ranges from tiny to mid to large.  Here is the distribution of square footage variable:
+It looks quite strange that bedroom coefficient is negative! What's going on? We need to dig deeper. The square footage variable has lot of variance, it ranges from tiny to mid to large. Here is the distribution of square footage variable:
 
 ```{r echo=FALSE}
 p1 <- WA_houses %>%
@@ -86,13 +81,14 @@ library(patchwork)
 p1 / p2
 ```
 
+Some summary stats of the size of the houses. It seems like 50% of houses are around 1400 to 2500 square feet.
 
-Some summary stats of the size of the houses.  It seems like 50% of houses are around 1400 to 2500 square feet.
 ```{r}
 quantile(WA_houses$sqft_living,
          probs = c(.05,.25,.5,.75,.95)) %>%
   kable()
 ```
+
 So let's group them into 3 buckets (small houses, mid-sized houses and large houses)
 
 ```{r}
@@ -140,22 +136,76 @@ plarge <- WA_houses %>%
                y = 'Price($)',
                subtitle = 'Large Homes') +
           theme_economist()
+```
 
+\*\*How Bedrooms correlate with Price\*\*
 
-psmall 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+(psmall | pmid ) / plarge
+```
 
-pmid 
+Let's remove the obvious outlier and redo the analysis. If you look at the data you'll see that this outlier corresponds to row number 8063:
 
-plarge
-
-
+```{r}
+WA_houses[8063,] %>% kable()
 
 ```
 
-Let's remove the obvious outlier and redo the analysis:
+Also, if you examine more, you'll see that there are 5 houses with no bedrooms! Let's remove these and redo the plots:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+WA_houses <- WA_houses %>%
+              filter(bedrooms > 0 & bedrooms < 11) 
+psmall <- WA_houses %>%
+          filter(size == 'small') %>%
+          ggplot() +
+          aes(x = bedrooms, y = price) +
+          geom_jitter() +
+          geom_smooth(method = 'lm', se = FALSE) +
+          labs(x = 'Bedrooms', 
+               y = 'Price($)',
+               subtitle = 'Small Homes') +
+          theme_economist()
+
+pmid <- WA_houses %>%
+          filter(size == 'mid-sized') %>%
+          ggplot() +
+          aes(x = bedrooms, y = price) +
+          geom_jitter() +
+          geom_smooth(method = 'lm', se = FALSE) +
+          labs(x = 'Bedrooms', 
+               y = 'Price($)',
+               subtitle = 'Mid-Sized Homes') +
+          theme_economist()
 
 
+plarge <- WA_houses %>%
+          filter(size == 'large') %>%
+          ggplot() +
+          aes(x = bedrooms, y = price) +
+          geom_jitter() +
+          geom_smooth(method = 'lm', se = FALSE) +
+          labs(x = 'Bedrooms', 
+               y = 'Price($)',
+               subtitle = 'Large Homes') +
+          theme_economist()
+```
 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+psmall
+```
+
+Med
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+pmid
+```
+
+Large
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+plarge
+```
 
 ## Another Example
 
@@ -185,5 +235,3 @@ wage_data %>%
        y = 'Weekly Wage (in 2009)')
 
 ```
- 
-
