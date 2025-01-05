@@ -1,4 +1,7 @@
-# An Example
+# Regression Models: What are they? 
+
+
+## An Example {-}
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 WA_houses <- read.csv('https://raw.githubusercontent.com/gitcnk/Data/master/Stat_Seminar/KingsCounty_WA_house_data.csv')
@@ -33,7 +36,7 @@ WA_houses %>%
 
 Here are the estimated coefficients of the model:
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 m1 <- lm(price ~ sqft_living, data = WA_houses)
 
 m1 %>%
@@ -46,7 +49,7 @@ m1 %>%
 
 Let's look at the correlation of bedrooms with the price after we adjust for the square footage of the house:
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 m2 <- lm(price ~ sqft_living + bedrooms, data = WA_houses)
 
 m2 %>%
@@ -76,7 +79,7 @@ p2 <- WA_houses %>%
   scale_y_continuous(labels = NULL) +
   labs(x = 'Square Footage') 
 
-library(patchwork)
+
 
 p1 / p2
 ```
@@ -215,22 +218,73 @@ wage_data %>%
   kable()
 ```
 
+### Do Older Workers Earn More? {-}
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
 wage_data %>%
-  sample_n(size = 500) %>%
   ggplot() +
   aes( x = age, y = wage) +
   geom_point() +
   geom_smooth(method = 'lm', 
               se = FALSE) +
-  #geom_smooth(method = 'lm', 
-              #se = FALSE,
-              #formula = y ~ poly(x, degree = 3),
-              #col = 'red') +
+  geom_smooth(method = 'lm', 
+              se = FALSE,
+              formula = y ~ poly(x, degree = 3),
+              col = 'red') +
   theme_economist() +
   labs(title = 'Do older workers earn more?',
-       subtitle = 'Data Source: US Census Bureau',
+       x = 'Age',
+       y = 'Weekly Wage (in 2009)')
+
+```
+
+
+### Is the Trend Similar for all Races? {-}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+wage_data %>%
+  ggplot() +
+  aes( x = age, y = wage, col = race) +
+  geom_point() +
+  geom_smooth(method = 'lm', 
+              se = FALSE) +
+  theme_economist() +
+  labs(title = 'Do older workers earn more?',
+       x = 'Age',
+       y = 'Weekly Wage (in 2009)')
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+wage_data %>%
+  ggplot() +
+  aes( x = age, y = wage, col = race) +
+  geom_point() +
+  geom_smooth(method = 'lm', 
+              se = FALSE) +
+  facet_wrap( ~ race) +
+  theme_economist() +
+  labs(title = 'Do older workers earn more?',
+       x = 'Age',
+       y = 'Weekly Wage (in 2009)')
+
+```
+
+
+### Does it Differ by Industry? {-}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+wage_data %>%
+  ggplot() +
+  aes( x = age, y = wage, col = race) +
+  geom_point() +
+  geom_smooth(method = 'lm', 
+              se = FALSE) +
+  facet_grid( ~ jobclass) +
+  theme_economist() +
+  labs(title = 'Do older workers earn more?',
        x = 'Age',
        y = 'Weekly Wage (in 2009)')
 

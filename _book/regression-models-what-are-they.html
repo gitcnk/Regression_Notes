@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 An Example | To Regress or not to Regress!</title>
+  <title>2 Regression Models: What are they? | To Regress or not to Regress!</title>
   <meta name="description" content="Note for Regression models" />
   <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 An Example | To Regress or not to Regress!" />
+  <meta property="og:title" content="2 Regression Models: What are they? | To Regress or not to Regress!" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Note for Regression models" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 An Example | To Regress or not to Regress!" />
+  <meta name="twitter:title" content="2 Regression Models: What are they? | To Regress or not to Regress!" />
   
   <meta name="twitter:description" content="Note for Regression models" />
   
@@ -142,13 +142,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="correlation-coefficient.html"><a href="correlation-coefficient.html"><i class="fa fa-check"></i><b>1</b> Correlation Coefficient</a></li>
-<li class="chapter" data-level="2" data-path="an-example.html"><a href="an-example.html"><i class="fa fa-check"></i><b>2</b> An Example</a>
+<li class="chapter" data-level="2" data-path="regression-models-what-are-they.html"><a href="regression-models-what-are-they.html"><i class="fa fa-check"></i><b>2</b> Regression Models: What are they?</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="an-example.html"><a href="an-example.html#another-example"><i class="fa fa-check"></i><b>2.1</b> Another Example</a>
+<li class="chapter" data-level="" data-path="regression-models-what-are-they.html"><a href="regression-models-what-are-they.html#an-example"><i class="fa fa-check"></i>An Example</a></li>
+<li class="chapter" data-level="2.1" data-path="regression-models-what-are-they.html"><a href="regression-models-what-are-they.html#another-example"><i class="fa fa-check"></i><b>2.1</b> Another Example</a>
 <ul>
-<li class="chapter" data-level="" data-path="an-example.html"><a href="an-example.html#do-older-workers-earn-more"><i class="fa fa-check"></i>Do Older Workers Earn More?</a></li>
-<li class="chapter" data-level="" data-path="an-example.html"><a href="an-example.html#is-the-trend-similar-for-all-races"><i class="fa fa-check"></i>Is the Trend Similar for all Races?</a></li>
-<li class="chapter" data-level="" data-path="an-example.html"><a href="an-example.html#does-it-differ-by-industry"><i class="fa fa-check"></i>Does it Differ by Industry?</a></li>
+<li class="chapter" data-level="" data-path="regression-models-what-are-they.html"><a href="regression-models-what-are-they.html#do-older-workers-earn-more"><i class="fa fa-check"></i>Do Older Workers Earn More?</a></li>
+<li class="chapter" data-level="" data-path="regression-models-what-are-they.html"><a href="regression-models-what-are-they.html#is-the-trend-similar-for-all-races"><i class="fa fa-check"></i>Is the Trend Similar for all Races?</a></li>
+<li class="chapter" data-level="" data-path="regression-models-what-are-they.html"><a href="regression-models-what-are-they.html#does-it-differ-by-industry"><i class="fa fa-check"></i>Does it Differ by Industry?</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -168,12 +169,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="an-example" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">2</span> An Example<a href="an-example.html#an-example" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="regression-models-what-are-they" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Regression Models: What are they?<a href="regression-models-what-are-they.html#regression-models-what-are-they" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="an-example" class="section level2 unnumbered hasAnchor">
+<h2>An Example<a href="regression-models-what-are-they.html#an-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Here is a sample of data from home prices in Washington state:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="an-example.html#cb5-1" tabindex="-1"></a>WA_houses <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="an-example.html#cb5-2" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="an-example.html#cb5-3" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="regression-models-what-are-they.html#cb5-1" tabindex="-1"></a>WA_houses <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="regression-models-what-are-they.html#cb5-2" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="regression-models-what-are-they.html#cb5-3" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -236,7 +239,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Here are the estimated coefficients of the model:</p>
 <div id="uqvipjqxkn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#uqvipjqxkn table {
@@ -1234,11 +1237,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <p>It looks quite strange that bedroom coefficient is negative! What’s going on? We need to dig deeper. The square footage variable has lot of variance, it ranges from tiny to mid to large. Here is the distribution of square footage variable:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Some summary stats of the size of the houses. It seems like 50% of houses are around 1400 to 2500 square feet.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="an-example.html#cb6-1" tabindex="-1"></a><span class="fu">quantile</span>(WA_houses<span class="sc">$</span>sqft_living,</span>
-<span id="cb6-2"><a href="an-example.html#cb6-2" tabindex="-1"></a>         <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">05</span>,.<span class="dv">25</span>,.<span class="dv">5</span>,.<span class="dv">75</span>,.<span class="dv">95</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="an-example.html#cb6-3" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="regression-models-what-are-they.html#cb6-1" tabindex="-1"></a><span class="fu">quantile</span>(WA_houses<span class="sc">$</span>sqft_living,</span>
+<span id="cb6-2"><a href="regression-models-what-are-they.html#cb6-2" tabindex="-1"></a>         <span class="at">probs =</span> <span class="fu">c</span>(.<span class="dv">05</span>,.<span class="dv">25</span>,.<span class="dv">5</span>,.<span class="dv">75</span>,.<span class="dv">95</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="regression-models-what-are-they.html#cb6-3" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1270,11 +1273,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>So let’s group them into 3 buckets (small houses, mid-sized houses and large houses)</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="an-example.html#cb7-1" tabindex="-1"></a>WA_houses<span class="sc">$</span>size <span class="ot">&lt;-</span> <span class="fu">cut</span>(WA_houses<span class="sc">$</span>sqft_living,</span>
-<span id="cb7-2"><a href="an-example.html#cb7-2" tabindex="-1"></a>                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1400</span>,<span class="dv">2500</span>,<span class="cn">Inf</span>),</span>
-<span id="cb7-3"><a href="an-example.html#cb7-3" tabindex="-1"></a>                      <span class="at">labels  =</span><span class="fu">c</span>(<span class="st">&#39;small&#39;</span>, <span class="st">&#39;mid-sized&#39;</span>, <span class="st">&#39;large&#39;</span>))</span>
-<span id="cb7-4"><a href="an-example.html#cb7-4" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="an-example.html#cb7-5" tabindex="-1"></a><span class="fu">head</span>(WA_houses) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="regression-models-what-are-they.html#cb7-1" tabindex="-1"></a>WA_houses<span class="sc">$</span>size <span class="ot">&lt;-</span> <span class="fu">cut</span>(WA_houses<span class="sc">$</span>sqft_living,</span>
+<span id="cb7-2"><a href="regression-models-what-are-they.html#cb7-2" tabindex="-1"></a>                      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1400</span>,<span class="dv">2500</span>,<span class="cn">Inf</span>),</span>
+<span id="cb7-3"><a href="regression-models-what-are-they.html#cb7-3" tabindex="-1"></a>                      <span class="at">labels  =</span><span class="fu">c</span>(<span class="st">&#39;small&#39;</span>, <span class="st">&#39;mid-sized&#39;</span>, <span class="st">&#39;large&#39;</span>))</span>
+<span id="cb7-4"><a href="regression-models-what-are-they.html#cb7-4" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="regression-models-what-are-they.html#cb7-5" tabindex="-1"></a><span class="fu">head</span>(WA_houses) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <colgroup>
 <col width="10%" />
@@ -1355,9 +1358,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>Let’s explore the relationship of bedrooms with price:</p>
 <p>**How Bedrooms correlate with Price**</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>Let’s remove the obvious outlier and redo the analysis. If you look at the data you’ll see that this outlier corresponds to row number 8063:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="an-example.html#cb8-1" tabindex="-1"></a>WA_houses[<span class="dv">8063</span>,] <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="regression-models-what-are-they.html#cb8-1" tabindex="-1"></a>WA_houses[<span class="dv">8063</span>,] <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
 <table style="width:100%;">
 <colgroup>
 <col width="6%" />
@@ -1395,16 +1398,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Also, if you examine more, you’ll see that there are 5 houses with no bedrooms! Let’s remove these and redo the plots:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p>Med</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p>Large</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+</div>
 <div id="another-example" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Another Example<a href="an-example.html#another-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="an-example.html#cb9-1" tabindex="-1"></a>wage_data <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="an-example.html#cb9-2" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="an-example.html#cb9-3" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>
+<h2><span class="header-section-number">2.1</span> Another Example<a href="regression-models-what-are-they.html#another-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="regression-models-what-are-they.html#cb9-1" tabindex="-1"></a>wage_data <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="regression-models-what-are-they.html#cb9-2" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="regression-models-what-are-they.html#cb9-3" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>
 <table style="width:100%;">
 <colgroup>
 <col width="3%" />
@@ -1516,17 +1520,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <div id="do-older-workers-earn-more" class="section level3 unnumbered hasAnchor">
-<h3>Do Older Workers Earn More?<a href="an-example.html#do-older-workers-earn-more" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="_main_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<h3>Do Older Workers Earn More?<a href="regression-models-what-are-they.html#do-older-workers-earn-more" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
 <div id="is-the-trend-similar-for-all-races" class="section level3 unnumbered hasAnchor">
-<h3>Is the Trend Similar for all Races?<a href="an-example.html#is-the-trend-similar-for-all-races" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3>Is the Trend Similar for all Races?<a href="regression-models-what-are-they.html#is-the-trend-similar-for-all-races" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="_main_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 </div>
 <div id="does-it-differ-by-industry" class="section level3 unnumbered hasAnchor">
-<h3>Does it Differ by Industry?<a href="an-example.html#does-it-differ-by-industry" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<h3>Does it Differ by Industry?<a href="regression-models-what-are-they.html#does-it-differ-by-industry" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -1579,7 +1583,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.pdf", "_main.epub"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null
@@ -1591,6 +1595,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

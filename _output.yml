@@ -5,7 +5,6 @@ bookdown::gitbook:
       before: |
         <li><a href="./">To Regress or not to Regress</a></li>
     edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
-    download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex

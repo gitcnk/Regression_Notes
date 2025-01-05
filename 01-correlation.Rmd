@@ -1,0 +1,57 @@
+# Correlation Coefficient 
+
+The word correlation is used widely in our daily conversations.  It means many things depending on the context.  In statistic,  we have a definite meaning and a limitation to this word.  It primarily depends on the datatype.  For example, it is a reasonable question to ask that whether there is a correlation between a person's skin color and their income.  But it is hard to quantify this because race is a categorical variable and income is numerical. In statistics, when we talk about correlation, we generally mean the correlation between two numerical variables such as height and weight.
+
+```{example}
+Suppose you are interested in the correlation between amount of sleep and GPA.
+```
+
+\
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+load('./data_for_chapters/corrplot.rda')
+corr_plot$data |>
+  ggplot() +
+  aes(x = x, y = y) +
+  geom_point() +
+  labs(x = 'Amount of sleep in hours',
+       y = 'GPA',
+       title = 'Sleeping Increases your GPA?')
+```
+
+
+
+```{r message=FALSE, warning=FALSE}
+corr_plot$data |>
+  summarize('correlation' = cor(x, y))
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+wage_data %>%
+  ggplot() +
+  aes( x = age, y = wage) +
+  geom_point() +
+  theme_economist() +
+  labs(title = 'What is the Correlation?',
+       x = 'Age',
+       y = 'Weekly Wage (in 2009)')
+```
+
+```{r message=FALSE, warning=FALSE}
+wage_data |>
+  summarize('correlation'= cor(wage, age))
+```
+
+`r colorize("TWO variables", "red")`
+`r resize_text(x= 'The sample correlation coefficient is defined as:', size = 20)`
+
+
+
+
+
+$$ \frac{\sum_{i=1}^n (x_i - \bar x)(y_i - \bar y)}{SD_x SD_y} $$
+
+
+

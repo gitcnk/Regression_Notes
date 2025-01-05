@@ -6,9 +6,10 @@ site: bookdown::bookdown_site
 documentclass: book
 description: |
   Note for Regression models
+
 ---
 
-# Introduction
+# Preface{-}
 Regression models are the most widely used and abused statistical modelling framework in the world.  It popularity is based on its simplicity and the elegant mathematical theory behind it.  Although the theory is beautiful, it is based on some assumptions which we must always be wary of.  Just like the p-values, the Regression modelling framework is a tool and we need to understand its limitations when we use it.  Let's dive in.
 
 
@@ -21,6 +22,7 @@ library(gtsummary)
 library(car)
 library(kableExtra)
 library(modelsummary)
+library(patchwork)
 
 
 wage_data <- read.csv('https://raw.githubusercontent.com/gitcnk/Data/master/Wage_data_MidAtlantic.csv')
@@ -28,4 +30,28 @@ wage_data <- read.csv('https://raw.githubusercontent.com/gitcnk/Data/master/Wage
 ```
 
 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+resize_text <- function(x, size) {
+  if (knitr::is_latex_output()) {
+    # For LaTeX, use \fontsize{}{} and \selectfont
+    sprintf("\\fontsize{%d}{%d}\\selectfont %s\\normalsize", size, size + 2, x)
+  } else if (knitr::is_html_output()) {
+    # For HTML, use inline CSS with font-size
+    sprintf("<span style='font-size: %dpx;'>%s</span>", size, x)
+  } else {
+    # For other outputs, just return the text unchanged
+    x
+  }
+}
+
+# User defined functions
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color, 
+      x)
+  } else x
+}
+```
 
